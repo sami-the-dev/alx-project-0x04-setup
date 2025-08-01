@@ -1,16 +1,14 @@
 import { createContext, PropsWithChildren, useContext, useState } from "react";
 
-interface CounterContextProps {
+interface CountContextProps {
   count: number;
   increment: () => void;
   decrement: () => void;
 }
 
-const CounterContext = createContext<CounterContextProps | undefined>(
-  undefined
-);
+const CountContext = createContext<CountContextProps | undefined>(undefined);
 
-const CounterProvider: React.FC<PropsWithChildren> = ({ children }) => {
+const CountProvider: React.FC<PropsWithChildren> = ({ children }) => {
   const [count, setCount] = useState(0);
 
   const increment = () => {
@@ -22,18 +20,18 @@ const CounterProvider: React.FC<PropsWithChildren> = ({ children }) => {
   };
 
   return (
-    <CounterContext.Provider value={{ count, increment, decrement }}>
+    <CountContext.Provider value={{ count, increment, decrement }}>
       {children}
-    </CounterContext.Provider>
+    </CountContext.Provider>
   );
 };
 
 export const useCounter = () => {
-  const context = useContext(CounterContext);
+  const context = useContext(CountContext);
   if (context === undefined) {
-    throw new Error("useCounter must be used within a CounterProvider");
+    throw new Error("useCounter must be used within a CountProvider");
   }
   return context;
 };
 
-export default CounterProvider;
+export default CountProvider;
