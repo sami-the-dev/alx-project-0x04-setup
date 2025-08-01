@@ -26,12 +26,12 @@ const CountProvider: React.FC<PropsWithChildren> = ({ children }) => {
   );
 };
 
-export const useCounter = () => {
+export default function useCounter() {
   const context = useContext(CountContext);
   if (context === undefined) {
     throw new Error("useCounter must be used within a CountProvider");
   }
   return context;
-};
+}
 
-export default CountProvider;
+export { CountProvider };
