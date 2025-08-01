@@ -1,10 +1,15 @@
-import { AppDispatch, decrement, increment, RootState } from "@/store/store";
-import { useDispatch } from "react-redux";
+import {
+  AppDispatch,
+  decrement,
+  increment,
+  RootState,
+  useAppDispatch,
+} from "@/store/store";
 import { useSelector } from "react-redux";
 
 const CounterApp: React.FC = () => {
   const count = useSelector((state: RootState) => state.counter.value);
-  const dispatch: AppDispatch = useDispatch();
+  const dispatch: AppDispatch = useAppDispatch();
 
   return (
     <div className="min-h-screen bg-gradient-to-r from-yellow-400 to-pink-500 flex flex-col justify-center items-center text-white">
